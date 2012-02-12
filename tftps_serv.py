@@ -136,8 +136,8 @@ class Thread_Client(threading.Thread):
 	#	print "."
 	
 	def Send_DATA_packet(self):
-		self.srv.Server_write_msg("SEND DATA Packet")
-	 
+		self.Packet_DATA = struct.pack("!HH",
+		
 	def Write_file(self):
 		full_filename = self.srv.Server_dir + self.Client_infos[1]
 		self.Server_receive_file = open(full_filename,'w')
@@ -148,5 +148,6 @@ class Thread_Client(threading.Thread):
 	def Open_file(self):
 		full_filename = self.srv.Server_dir + self.Client_infos[1]
 		self.Server_file_sending = open(full_filename,'r')
+		self.Server_file_data = self.Server_file_sending.read()
 		self.Server_file_sending.close()
 
